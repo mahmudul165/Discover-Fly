@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+        <div  class="booking-form ">         
+             <h3>Booking Flights</h3>       
+            <div class="input-group">
+                <label for="">Flying From</label>
+                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">Flying To</label>
+                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    <label for="">First Class ($150)</label>
+
+                    <input id="ticket-input-1" class="inp-style inp-width" type="number"  value="0">
+
+                </div>
+                <div class="plus-minus-btn">
+
+                  <span id="increase-button-1">+</span> 
+                  <span id="decrease-button-1">-</span>
+
+                </div>
+            </div>
+            
+            <div class="input-group f-class">
+                <div>
+                    <label for="">Economy ($100)</label>
+
+                    <input id="ticket-input-2" class="inp-style inp-width" type="number" value="0">
+
+                </div>
+                <div class="plus-minus-btn">
+
+                  <span id="increase-button-2">+</span> 
+                  <span id="decrease-button-2">-</span>
+
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+
+                        <p>$<span id="subtotal">500</span></p>
+
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+
+                        <p>$<span id="tax">50</span></p>
+
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+
+                        <p>$<span id="total">550</span></p>
+
+                    </div>
+                </div>
+               </div>
+            <button id="booknow" class="btn-style">Book Now</button>
+        </div>
+
+        <div id="display-price" class="booking-content ">
+            <h1>discover <br> around the world</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+        </div>
+        <div id="price" class="booking-content ">
+         <h2>Your Booking  is completed</h2>
+        </div>
+    </section>
+
+ <script>
+
+//case 1
+  document.getElementById('increase-button-1').addEventListener('click',function(){
+     plusBtn('ticket-input-1')
+     
+})
+document.getElementById('decrease-button-1').addEventListener('click',function(){
+     minusBtn('ticket-input-1')
+})
+
+//case 2
+document.getElementById('increase-button-2').addEventListener('click',function(){
+     plusBtn('ticket-input-2')
+})
+
+document.getElementById('decrease-button-2').addEventListener('click',function(){
+     minusBtn('ticket-input-2')
+})
+
+//function for plus button
+
+function plusBtn(id){
+   const ticketStr=document.getElementById(id).value;
+   const ticketNum=parseInt(ticketStr);   
+   const ticketIncrease=ticketNum+1;
+   document.getElementById(id).value=ticketIncrease;
+   calculation(); 
+  
+}
+//function for minus button
+
+function minusBtn(id){
+   const ticketStr=document.getElementById(id).value;
+   const ticketNum=parseInt(ticketStr);
+   if(ticketNum>0){
+   const ticketIncrease=ticketNum-1;
+   document.getElementById(id).value=ticketIncrease;  
+   } 
+   calculation() 
+     
+}
+function calculation() {
+   const ticketStr_1=document.getElementById("ticket-input-1");
+   const ticketNum_1=parseInt(ticketStr_1.value);
+
+   const ticketStr_2=document.getElementById("ticket-input-2");
+   const ticketNum_2=parseInt(ticketStr_2.value);
+
+   const subTotal=ticketNum_1 * 150 + ticketNum_2 * 100;
+   const taxAmount= subTotal * 0.1;
+   const totalAmount=subTotal+taxAmount;
+
+   document.getElementById("subtotal").innerText=subTotal;
+   document.getElementById("tax").innerText=taxAmount;
+   document.getElementById("total").innerText=totalAmount;
+}
+//click  book now button and show up message
+
+document.getElementById('booknow').addEventListener('click',function(){
+         const showPrice = document.getElementById('display-price');
+         showPrice.style.display="none";
+         const amountPrice= document.getElementById('price');
+          amountPrice.style.display="block" ;   
+})
+ </script>
+</body>
+
+</html>
